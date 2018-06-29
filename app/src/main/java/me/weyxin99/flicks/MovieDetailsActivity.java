@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import org.parceler.Parcels;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import me.weyxin99.flicks.models.Movie;
 
 public class MovieDetailsActivity extends AppCompatActivity {
@@ -16,9 +18,9 @@ public class MovieDetailsActivity extends AppCompatActivity {
     Movie movie;
 
     // the view objects
-    TextView tvTitle;
-    TextView tvOverview;
-    RatingBar rbVoteAverage;
+    @BindView(R.id.tvTitle) TextView tvTitle;
+    @BindView(R.id.tvOverview) TextView tvOverview;
+    @BindView(R.id.rbVoteAverage) RatingBar rbVoteAverage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +29,11 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         // resolve the view objects
 
-        tvTitle = (TextView) findViewById(R.id.tvTitle);
-        tvOverview = (TextView) findViewById(R.id.tvOverview);
-        rbVoteAverage = (RatingBar) findViewById(R.id.rbVoteAverage);
-
         // unwrap the movie passed in via intent, using its simple name as a key
         movie = (Movie) Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
         Log.d("MovieDetailsActivity", String.format("Showing details for '%s'", movie.getTitle()));
 
+        ButterKnife.bind(this);
         // set the title and overview
         tvTitle.setText(movie.getTitle());
         tvOverview.setText(movie.getOverview());
