@@ -8,6 +8,8 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 
+import org.parceler.Parcels;
+
 public class MovieTrailerActivity extends YouTubeBaseActivity {
 
     @Override
@@ -15,8 +17,8 @@ public class MovieTrailerActivity extends YouTubeBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_trailer);
 
-        // temporary test video id -- TODO replace with movie trailer video id
-        final String videoId = "tKodtNFpzBA";
+        // trailer ID
+        final String videoId = Parcels.unwrap(getIntent().getParcelableExtra("video"));
 
         // resolve the player view from the layout
         YouTubePlayerView playerView = (YouTubePlayerView) findViewById(R.id.player);
